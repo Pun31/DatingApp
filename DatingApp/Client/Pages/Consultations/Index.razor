@@ -1,0 +1,64 @@
+﻿@page "/consultations/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+
+<h3 class=" card-title">Consultations</h3>
+<br />
+<a href="/consultations/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Consultation
+</a>
+<br />
+<br />
+@if (Consultations == null)
+{
+<div class=" alert alert-info">Loading Consultations...</div> }
+            else
+            {
+<table class=" table table-responsive">
+    <thead>
+        <tr>
+            <th>Consult Name</th>
+            <th>Consult Report</th>
+            <th>Consult Date</th>
+            <th>PlayerId</th>
+            <th>Player</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var consultation in Consultations)
+        {
+        <tr>
+            <td>@consultation.ConsultReport</td>
+            <td>@consultation.ConsultName</td>
+            <td>@consultation.DateCreated.Date.ToString("dd MMMM yyyy")</td>
+            <td>@consultation.Player</td>
+            <td>@consultation.PlayerId</td>
+        </tr>
+         }
+    </tbody>
+</table>}
+
+@code { private List<Consultation> Consultations;
+
+            protected async override Task OnInitializedAsync()
+            {
+                Consultations = await _client.GetFromJsonAsync<List<Consultation>>($"{Endpoints.ConsultationsEndpoint}");
+            }
+
+            async Task Delete(int consultationId)
+            {
+                var consultation = Consultations.First(q => q.Id == consultationId);
+                var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {consultation.Id}?");
+                if (confirm)
+                {
+                    await _client.DeleteAsync($"{Endpoints.ConsultationsEndpoint}/{consultationId}");
+                    await OnInitializedAsync();
+                }
+
+            } 
+    }

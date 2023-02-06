@@ -1,0 +1,63 @@
+﻿@page "/matchtypes/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+
+<h3 class=" card-title">MatchTypes</h3>
+<br />
+<a href="/matchtypes/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New MatchType
+</a>
+<br />
+<br />
+@if (MatchTypes == null)
+{
+<div class=" alert alert-info">Loading MatchTypes...</div> }
+            else
+            {
+<table class=" table table-responsive">
+    <thead>
+        <tr>
+            <th>Unmatch</th>
+            <th>Match</th>
+            <th>Ismatch</th>
+            <th>Player</th>
+            <th>PlayerId</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var matchtype in MatchTypes)
+        {
+            <tr>
+                <td>@matchtype.Unmatch</td>
+                <td>@matchtype.Match</td>
+                <td>@matchtype.IsMatch</td>
+                <td>@matchtype.Player</td>
+                <td>@matchtype.PlayerId</td>
+            </tr>
+         }
+    </tbody>
+</table>}
+
+@code { private List<MatchType> MatchTypes;
+
+            protected async override Task OnInitializedAsync()
+            {
+                MatchTypes = await _client.GetFromJsonAsync<List<MatchType>>($"{Endpoints.MatchTypesEndpoint}");
+            }
+
+            async Task Delete(int matchtypeId)
+            {
+                var matchtype = MatchTypes.First(q => q.Id == matchtypeId);
+                var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {matchtype.Id}?");
+                if (confirm)
+                {
+                    await _client.DeleteAsync($"{Endpoints.MatchTypesEndpoint}/{matchtypeId}");
+                    await OnInitializedAsync();
+                }
+
+            } }
