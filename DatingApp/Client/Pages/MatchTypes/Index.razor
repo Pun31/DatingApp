@@ -14,31 +14,44 @@
 <br />
 @if (MatchTypes == null)
 {
-<div class=" alert alert-info">Loading MatchTypes...</div> }
-            else
-            {
-<table class=" table table-responsive">
-    <thead>
-        <tr>
-            <th>Unmatch</th>
-            <th>Match</th>
-            <th>Ismatch</th>
-            <th>Player</th>
-            <th>PlayerId</th>
-            <th>Actions</th>
+    <div class=" alert alert-info">Loading MatchTypes...</div> 
+}
+else
+{
+    <table class=" table table-responsive">
+        <thead>
+            <tr>
+                <th>Player1 FirstName</th>
+                <th>Player1 LastName</th>
+                <th>Player2 FirstName</th>
+                <th>Player2 LastName</th>
+                <th>Match</th>
+                <th>Actions</th>
 
-        </tr>
+            </tr>
     </thead>
     <tbody>
         @foreach (var matchtype in MatchTypes)
         {
-            <tr>
-                <td>@matchtype.Unmatch</td>
-                <td>@matchtype.Match</td>
-                <td>@matchtype.IsMatch</td>
-                <td>@matchtype.Player</td>
-                <td>@matchtype.PlayerId</td>
-            </tr>
+        <tr>
+            <td>@matchtype.Player.FirstName</td>
+            <td>@matchtype.Player.LastName</td>
+            <td>@matchtype.Player.FirstName</td>
+            <td>@matchtype.Player.LastName</td>
+            <td>@matchtype.Match</td>
+
+            <td>
+                <a href=" /matchtypes/view/@matchtype.Id" class=" btn btn-primary">
+                    <span class=" oi oi-book"></span>
+                </a>
+                <a href=" /matchtypes/edit/@matchtype.Id" class=" btn btn-warning">
+                    <span class=" oi oi-pencil"></span>
+                </a>
+                <button class=" btn btn-danger" @onclick="@(()=>Delete(matchtype.Id))">
+                    <span class=" oi oi-delete"></span>
+                </button>
+            </td>
+        </tr>
          }
     </tbody>
 </table>}

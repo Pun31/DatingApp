@@ -97,7 +97,7 @@ namespace DatingApp.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("ConsultDate")
+                    b.Property<DateTime?>("ConsultDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ConsultName")
@@ -131,24 +131,24 @@ namespace DatingApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            ConsultDate = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(3563),
+                            ConsultDate = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(8929),
                             ConsultName = "John",
                             ConsultReport = "This person is more suited to your preferences.",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(3333),
-                            DateUpdated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(3338),
+                            DateCreated = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(8738),
+                            DateUpdated = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(8744),
                             PlayerId = 0,
                             UpdatedBy = "System"
                         },
                         new
                         {
                             Id = 2,
-                            ConsultDate = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(3956),
+                            ConsultDate = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(9493),
                             ConsultName = "Lim",
                             ConsultReport = "This person is not suited to your preferences.",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(3952),
-                            DateUpdated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(3955),
+                            DateCreated = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(9490),
+                            DateUpdated = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(9492),
                             PlayerId = 0,
                             UpdatedBy = "System"
                         });
@@ -179,9 +179,6 @@ namespace DatingApp.Server.Migrations
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Unmatch")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -196,24 +193,22 @@ namespace DatingApp.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(6179),
-                            DateUpdated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(6183),
+                            DateCreated = new DateTime(2023, 2, 10, 1, 29, 35, 924, DateTimeKind.Local).AddTicks(1262),
+                            DateUpdated = new DateTime(2023, 2, 10, 1, 29, 35, 924, DateTimeKind.Local).AddTicks(1266),
                             IsMatch = "You have matched with another player.",
                             Match = "Swipe right",
                             PlayerId = 0,
-                            Unmatch = "Swipe left",
                             UpdatedBy = "System"
                         },
                         new
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(6714),
-                            DateUpdated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(6716),
+                            DateCreated = new DateTime(2023, 2, 10, 1, 29, 35, 924, DateTimeKind.Local).AddTicks(1636),
+                            DateUpdated = new DateTime(2023, 2, 10, 1, 29, 35, 924, DateTimeKind.Local).AddTicks(1638),
                             IsMatch = "You have not matched with another player.",
                             Match = "Swipe right",
                             PlayerId = 0,
-                            Unmatch = "Swipe left",
                             UpdatedBy = "System"
                         });
                 });
@@ -249,8 +244,8 @@ namespace DatingApp.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(830),
-                            DateUpdated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(846),
+                            DateCreated = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(6533),
+                            DateUpdated = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(6549),
                             MessageDesc = "Matter Baby",
                             UpdatedBy = "System"
                         },
@@ -258,8 +253,8 @@ namespace DatingApp.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(850),
-                            DateUpdated = new DateTime(2023, 2, 6, 18, 23, 4, 66, DateTimeKind.Local).AddTicks(851),
+                            DateCreated = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(6552),
+                            DateUpdated = new DateTime(2023, 2, 10, 1, 29, 35, 923, DateTimeKind.Local).AddTicks(6553),
                             MessageDesc = "Whats Up",
                             UpdatedBy = "System"
                         });
@@ -319,8 +314,8 @@ namespace DatingApp.Server.Migrations
                             Address = "520875 tampines st09 #100-0",
                             ContactNumber = "98765432",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 6, 18, 23, 4, 63, DateTimeKind.Local).AddTicks(3647),
-                            DateUpdated = new DateTime(2023, 2, 6, 18, 23, 4, 64, DateTimeKind.Local).AddTicks(5193),
+                            DateCreated = new DateTime(2023, 2, 10, 1, 29, 35, 921, DateTimeKind.Local).AddTicks(9184),
+                            DateUpdated = new DateTime(2023, 2, 10, 1, 29, 35, 922, DateTimeKind.Local).AddTicks(7330),
                             EmailAddress = "Wongkkb@gmail.com",
                             FirstName = "Wong",
                             Gender = "M",
@@ -333,8 +328,8 @@ namespace DatingApp.Server.Migrations
                             Address = "567892 tampines st20 #50-0",
                             ContactNumber = "91234567",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 6, 18, 23, 4, 64, DateTimeKind.Local).AddTicks(6012),
-                            DateUpdated = new DateTime(2023, 2, 6, 18, 23, 4, 64, DateTimeKind.Local).AddTicks(6016),
+                            DateCreated = new DateTime(2023, 2, 10, 1, 29, 35, 922, DateTimeKind.Local).AddTicks(7852),
+                            DateUpdated = new DateTime(2023, 2, 10, 1, 29, 35, 922, DateTimeKind.Local).AddTicks(7855),
                             EmailAddress = "Suuuuuuuuuuuuuuuuu@gmail.com",
                             FirstName = "Su",
                             Gender = "F",

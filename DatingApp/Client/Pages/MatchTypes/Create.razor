@@ -1,1 +1,26 @@
-﻿
+﻿@page "/matchtypes/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class=" card-title">Create New MatchTypes</h3>
+<hr />
+<br />
+
+<FormComponent ButtonText="Create MatchType" matchtype="matchtype"
+               OnValidSubmit="@CreateMatchType" />
+@code { 
+    MatchType matchtype = new MatchType();
+    private IList<MatchType> MatchTypes;
+    private IList<Player> Players;
+
+    protected async override Task OnInitializedAsync()
+    {
+        MatchTypes = await _client.GetFromJsonAsync<List<MatchType>>($"{Endpoints.MatchTypesEndpoint}");
+        Players = await _client.GetFromJsonAsync<List<Player>>($"{Endpoints.PlayersEndpoint}");
+    }
+
+    private async Task CreateMatchType()
+    {
+        await _client.PostAsJsonAsync(Endpoints.MatchTypesEndpoint, matchtype);
+        _navManager.NavigateTo("/matchtypes/");
+    } }

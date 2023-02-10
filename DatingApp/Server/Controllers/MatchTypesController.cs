@@ -31,7 +31,7 @@ namespace DatingApp.Server.Controllers
         public async Task<IActionResult> GetMatchTypes()
         {
             //return await _context.Players.ToListAsync();
-            var matchTypes = await _unitOfWork.MatchTypes.GetAll();
+            var matchTypes = await _unitOfWork.MatchTypes.GetAll(includes: q=>q.Include(x => x.Player));
             return Ok(matchTypes);
         }
 
@@ -88,7 +88,7 @@ namespace DatingApp.Server.Controllers
         // POST: api/Players
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<MatchType>> PostPlayer(MatchType matchType)
+        public async Task<ActionResult<MatchType>> PostMatchType(MatchType matchType)
         {
             //_context.Players.Add(player);
             //await _context.SaveChangesAsync();

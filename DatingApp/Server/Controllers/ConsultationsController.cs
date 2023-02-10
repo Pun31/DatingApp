@@ -88,14 +88,14 @@ namespace DatingApp.Server.Controllers
         // POST: api/Players
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Consultation>> PostConsultation(Consultation Consultation)
+        public async Task<ActionResult<Consultation>> PostConsultation(Consultation consultation)
         {
             //_context.Players.Add(player);
             //await _context.SaveChangesAsync();
-            await _unitOfWork.Consultations.Insert(Consultation);
+            await _unitOfWork.Consultations.Insert(consultation);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetConsultation", new { id = Consultation.Id }, Consultation);
+            return CreatedAtAction("GetConsultation", new { id = consultation.Id }, consultation);
         }
 
         // DELETE: api/Players/5
@@ -121,8 +121,8 @@ namespace DatingApp.Server.Controllers
         private async Task<bool> ConsultationExists(int id)
         {
             //return _context.Players.Any(e => e.Id == id);
-            var Consultation = await _unitOfWork.Consultations.Get(q => q.Id == id);
-            return Consultation != null;
+            var consultation = await _unitOfWork.Consultations.Get(q => q.Id == id);
+            return consultation != null;
         }
     }
 }

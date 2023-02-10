@@ -1,0 +1,21 @@
+﻿@page  "/matchtypes/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>Edit MatchType</h3>
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditMatchType" matchtype="matchtype" />
+
+@code { [Parameter] public int id { get; set; }//This is to set the parameter required at the @page directive /models/edit/{id:int}.
+    MatchType matchtype = new MatchType();//This is the model object used by the form component. The form component will be added later.
+
+    protected async override Task OnParametersSetAsync()
+    {
+        matchtype = await _client.GetFromJsonAsync<MatchType>($"{Endpoints.MatchTypesEndpoint}/{id}");
+    }
+
+    async Task EditMatchType()
+    {
+        await _client.PutAsJsonAsync($"{Endpoints.MatchTypesEndpoint}/{id}", matchtype);
+        _navManager.NavigateTo("/matchtypes/");
+    } }

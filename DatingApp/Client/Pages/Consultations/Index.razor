@@ -14,17 +14,16 @@
 <br />
 @if (Consultations == null)
 {
-<div class=" alert alert-info">Loading Consultations...</div> }
-            else
-            {
+<div class=" alert alert-info">Loading Consultations...</div> 
+}
+else
+{
 <table class=" table table-responsive">
     <thead>
         <tr>
             <th>Consult Name</th>
-            <th>Consult Report</th>
             <th>Consult Date</th>
-            <th>PlayerId</th>
-            <th>Player</th>
+            <th>Consult Report</th>
             <th>Actions</th>
 
         </tr>
@@ -33,11 +32,21 @@
         @foreach (var consultation in Consultations)
         {
         <tr>
-            <td>@consultation.ConsultReport</td>
             <td>@consultation.ConsultName</td>
             <td>@consultation.DateCreated.Date.ToString("dd MMMM yyyy")</td>
-            <td>@consultation.Player</td>
-            <td>@consultation.PlayerId</td>
+            <td>@consultation.ConsultReport</td>
+
+            <td>
+                <a href=" /consultations/view/@consultation.Id" class=" btn btn-primary">
+                    <span class=" oi oi-book"></span>
+                </a>
+                <a href=" /consultations/edit/@consultation.Id" class=" btn btn-warning">
+                    <span class=" oi oi-pencil"></span>
+                </a>
+                <button class=" btn btn-danger" @onclick="@(()=>Delete(consultation.Id))">
+                    <span class=" oi oi-delete"></span>
+                </button>
+            </td>
         </tr>
          }
     </tbody>

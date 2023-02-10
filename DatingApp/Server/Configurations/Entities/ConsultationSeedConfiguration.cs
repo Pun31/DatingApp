@@ -16,24 +16,24 @@ namespace DatingApp.Server.Configurations.Entities
                 new Consultation
                 {
                     Id = 1,
+                    ConsultName = "John",
+                    ConsultDate = DateTime.Now,
+                    ConsultReport = "This person is more suited to your preferences.",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     CreatedBy = "System",
                     UpdatedBy = "System",
-                    ConsultName = "John",
-                    ConsultDate = DateTime.Now,
-                    ConsultReport = "This person is more suited to your preferences."
                 },
                 new Consultation
                 {
                     Id = 2,
+                    ConsultName = "Lim",
+                    ConsultDate = DateTime.Now,
+                    ConsultReport = "This person is not suited to your preferences.",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     CreatedBy = "System",
                     UpdatedBy = "System",
-                    ConsultName = "Lim",
-                    ConsultDate = DateTime.Now,
-                    ConsultReport = "This person is not suited to your preferences."
                 }
                 );
         }

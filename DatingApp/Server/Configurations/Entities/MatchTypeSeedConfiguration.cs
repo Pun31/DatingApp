@@ -18,22 +18,18 @@ namespace DatingApp.Server.Configurations.Entities
                     Id = 1,
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
+                    Match = "Swipe right",
                     CreatedBy = "System",
                     UpdatedBy = "System",
-                    Unmatch = "Swipe left",
-                    Match = "Swipe right",
-                    IsMatch = "You have matched with another player."
                 },
                 new MatchType
                 {
                     Id = 2,
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
+                    Match = "Swipe right",
                     CreatedBy = "System",
                     UpdatedBy = "System",
-                    Unmatch = "Swipe left",
-                    Match = "Swipe right",
-                    IsMatch = "You have not matched with another player."
                 }
                 );
         }

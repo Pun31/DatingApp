@@ -1,0 +1,12 @@
+﻿@page "/matchtypes/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<h3>View MatchTypes</h3>
+<FormComponent matchtype="matchtype" Disabled="true" />
+@code { [Parameter] public int id { get; set; }
+    MatchType matchtype = new MatchType();
+    protected async override Task OnParametersSetAsync()
+    {
+        matchtype = await
+    _client.GetFromJsonAsync<MatchType>($"{Endpoints.MatchTypesEndpoint}/{id}");
+    } }
